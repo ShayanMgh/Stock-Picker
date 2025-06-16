@@ -3719,7 +3719,7 @@ wheels = [
 ]
 
 [[package]]
-name = "stock-pricer"
+name = "stock-picker"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

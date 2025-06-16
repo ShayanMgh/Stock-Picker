@@ -100,9 +100,9 @@ class StockPicker():
             short_term_memory = ShortTermMemory(
                 storage = RAGStorage(
                         embedder_config={
-                            "provider": "openai",
+                            "provider": "huggingface",
                             "config": {
-                                "model": 'text-embedding-3-small'
+                                "model": "sentence-transformers/all-MiniLM-L6-v2"
                             }
                         },
                         type="short_term",
@@ -112,9 +112,9 @@ class StockPicker():
             entity_memory = EntityMemory(
                 storage=RAGStorage(
                     embedder_config={
-                        "provider": "openai",
+                        "provider": "huggingface",
                         "config": {
-                            "model": 'text-embedding-3-small'
+                            "model": "sentence-transformers/all-MiniLM-L6-v2"
                         }
                     },
                     type="short_term",

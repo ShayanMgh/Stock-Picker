@@ -1,5 +1,5 @@
 [project]
-name = "stock_pricer"
+name = "stock_picker"
 version = "0.1.0"
 description = "stock_pricer using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
