@@ -11,7 +11,7 @@ trending_company_finder:
   backstory: >
     You are a market expert with a knack for spotting the most interesting companies
     from the latest headlines.
-  llm: ollama/llama3          # use the tag you pulled, e.g. ollama/llama3:instruct
+  llm: ollama/llama3.2          # use the tag you pulled, e.g. ollama/llama3:instruct
 
 financial_researcher:
   role: >
@@ -21,7 +21,7 @@ financial_researcher:
     covering market position, outlook, and investment potential.
   backstory: >
     You have a proven record of turning headline buzz into deep, data-driven insight.
-  llm: ollama/llama3
+  llm: ollama/llama3.2
 
 stock_picker:
   role: >
@@ -31,7 +31,7 @@ stock_picker:
     and explain the decision clearly. Don’t pick the same company twice.
   backstory: >
     You specialise in synthesising research into actionable equity picks.
-  llm: ollama/llama3
+  llm: ollama/llama3.2
 
 manager:
   role: >
@@ -40,4 +40,4 @@ manager:
     Oversee the process to ensure the best company is selected.
   backstory: >
     A highly effective project manager who delegates tasks to the right agents.
-  llm: ollama/llama3
+  llm: ollama/llama3.2
