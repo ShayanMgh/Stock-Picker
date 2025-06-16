@@ -1,30 +1,27 @@
 #!/usr/bin/env python
-import sys
-import warnings
-import os
-from datetime import datetime
-
+import sys, warnings, json, datetime, os
 from stock_picker.crew import StockPicker
+from stock_picker.utils.serper import fetch_trending_news
 
-warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
-
+warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 def run():
-    """
-    Run the research crew.
-    """
+    sector = os.getenv("SECTOR", "technology")       # default sector
+    fresh_news = fetch_trending_news(sector)         # <-- live data
+
     inputs = {
-        'sector': 'Technology',
-        "current_date": str(datetime.now())
+        "sector": sector,
+        "current_year": str(datetime.datetime.now().year),
+        "news_snippets": fresh_news                  # inject into crew
     }
 
-    # Create and run the crew
-    result = StockPicker().crew().kickoff(inputs=inputs)
+    try:
+        result = StockPicker().crew().kickoff(inputs=inputs)
+        print(result)
+    except Exception as e:
+        raise Exception(f"Crew run failed: {e}")
 
-    # Print the result
-    print("\n\n=== FINAL DECISION ===\n\n")
-    print(result.raw)
-
-
+# ------------------------------------------------------------------
+# (train / replay / test helpers unchanged – show only run() here)
 if __name__ == "__main__":
     run()
