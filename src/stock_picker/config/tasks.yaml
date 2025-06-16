@@ -1,28 +1,43 @@
+# Task 1 – works on the Serper news snippets already passed in via `inputs`.
+
 find_trending_companies:
   description: >
-    Find the top trending companies in the news in {sector} by searching the latest news. Find new companies that you've not found before.
+    Using the provided **news_snippets** for {sector}, identify 2-3 companies that are
+    currently trending and have not been selected before.
   expected_output: >
-    A list of trending companies in {sector}
+    JSON list of objects with company name, ticker, and why it is trending.
   agent: trending_company_finder
   output_file: output/trending_companies.json
 
+
+# Task 2 – research each company found in Task 1.
+
 research_trending_companies:
   description: >
-    Given a list of trending companies, provide detailed analysis of each company in a report by searching online
+    For each company in the trending list, deliver a detailed analysis covering
+    market position, future outlook, and investment potential. Use open-source
+    information (reports, websites, filings, etc.) but do NOT perform additional
+    live web searches; rely on your internal knowledge and the supplied data.
   expected_output: >
-    A report containing detailed analysis of each company
+    A JSON or Markdown report with a section per company.
   agent: financial_researcher
   context:
     - find_trending_companies
   output_file: output/research_report.json
 
+
+# Task 3 – pick the single best company.
+
 pick_best_company:
   description: >
-    Analyze the research findings and pick the best company for investment.
-    Send a push notification to the user with the decision and 1 sentence rationale.
-    Then respond with a detailed report on why you chose this company, and which companies were not selected.
+    Evaluate the research findings and pick the best company for investment.
+    Respond with a short “push notification”-style sentence announcing the pick,
+    followed by a detailed rationale. Also list the companies you rejected and why.
   expected_output: >
-    The chosen company and why it was chosen; the companies that were not selected and why they were not selected.
+    A Markdown file containing:
+      * Chosen company and 1-sentence rationale
+      * Full explanation (≈1–2 paragraphs)
+      * Brief notes on companies not selected
   agent: stock_picker
   context:
     - research_trending_companies
